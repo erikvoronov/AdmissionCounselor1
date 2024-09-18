@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {JsonPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {StudentService} from "../services/student.service";
 import {SortPipe} from "../sort.pipe";
