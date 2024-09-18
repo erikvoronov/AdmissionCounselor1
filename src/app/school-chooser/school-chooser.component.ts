@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {UniversityService} from "../services/university.service";
 import {JsonPipe, NgClass, NgForOf} from "@angular/common";
-import {flip} from "@popperjs/core";
 
 @Component({
   selector: 'school-chooser',
