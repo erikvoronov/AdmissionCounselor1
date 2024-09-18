@@ -3,7 +3,7 @@
     <div class="col"></div>
 
     <div class="col">
-      <button class="btn btn-success enroll-btn"
+      <button class="btn btn-success enroll-btn m-3"
               [disabled]="!hasValidSelection(studentChooser, schoolChooser)"
               (click)="enroll(studentChooser,schoolChooser)">
         {{ buildEnrollButtonDisplay(studentChooser) }}
@@ -12,13 +12,15 @@
   </div>
 
   <div class="row">
-    <div class="col">
+    <div class="col rounded col-content">
       <!-- SCHOOL CARDS -->
       <school-chooser #schoolChooser></school-chooser>
     </div>
 
+    <div class="col-1"></div>
+
     <!-- STUDENT CARDS -->
-    <div class="col">
+    <div class="col rounded col-content">
       <student-chooser #studentChooser></student-chooser>
     </div>
   </div>

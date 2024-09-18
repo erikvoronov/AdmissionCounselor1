@@ -1,5 +1,11 @@
 .col {
-  border: 1px solid gray;
+  /*border: 1px solid gray;*/
+}
+
+.col-content {
+  background: white;
+  overflow: auto;
+  height: 600px;
 }
 
 .card {
@@ -14,6 +20,6 @@
   }
 }
 
-.enroll-btn{
+.enroll-btn {
   width: 165px;
 }
