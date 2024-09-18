@@ -1,9 +1,11 @@
+<pre>{{schoolStudentMap | json}}</pre>
+
 <div class="container text-center">
   <div class="row">
     <div class="col"></div>
 
     <div class="col">
-      <button class="btn btn-success enroll-btn m-3"
+      <button class="btn btn-success enroll-btn m-5"
               [disabled]="!hasValidSelection(studentChooser, schoolChooser)"
               (click)="enroll(studentChooser,schoolChooser)">
         {{ buildEnrollButtonDisplay(studentChooser) }}
