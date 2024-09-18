@@ -7,9 +7,10 @@
   width: 325px;
   cursor: default;
   background: #EFEFEF;
+  border: 3px solid transparent;
 
   &.card-selected {
-    border: 3px solid black;
+    border-color: black;
   }
 }
 

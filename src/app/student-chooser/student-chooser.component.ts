@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {JsonPipe, NgClass, NgForOf} from "@angular/common";
+import {JsonPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {StudentService} from "../services/student.service";
 
 @Component({
@@ -8,7 +8,8 @@ import {StudentService} from "../services/student.service";
   imports: [
     NgForOf,
     JsonPipe,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './student-chooser.component.html',
   styleUrl: './student-chooser.component.less'
@@ -40,8 +41,19 @@ export class StudentChooserComponent {
     return `${loc.city}, ${loc.state}, ${loc.country}`;
   }
 
-  getSelectedCount(): number{
+  getSelectedCount(): any {
     console.log('student-chooser.component.ts', 'students', this.students);
     return this.students && this.students.filter(s => s.isSelected).length;
+  }
+
+  getSelected(): any[]{
+    return this.students.filter(s => s.isSelected);
+  }
+
+  enroll(): void {
+    this.getSelected().forEach(s => {
+      s.isEnrolled = true;
+      s.isSelected = false;
+    })
   }
 }

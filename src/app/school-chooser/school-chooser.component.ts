@@ -45,9 +45,17 @@ export class SchoolChooserComponent {
       return;
     }
 
-    const selectedSchool = this.schools.find(s => s.isSelected);
-    selectedSchool && (selectedSchool.isSelected = false);
+    this.deselect();
 
     school.isSelected = true;
+  }
+
+  getSelectedSchool(): any{
+    return this.schools.find(s => s.isSelected);
+  }
+
+  deselect(): void {
+    const selectedSchool = this.schools.find(s => s.isSelected);
+    selectedSchool && (selectedSchool.isSelected = false);
   }
 }

@@ -1,26 +1,30 @@
 <pre>{{ students | json }}</pre>
 
-<!-- STUDENT CARDS -->
-<div *ngFor="let student of students"
-     class="card m-3"
-     (click)="student.isSelected = !student.isSelected"
-     [ngClass]="{'card-selected': student.isSelected}"
->
+<ng-container *ngFor="let student of students">
 
-  <div class="card-body">
-    <!--PIC-->
-    <img [src]="student.picture.medium" alt="Student Picture" class="w-25 float-end d-inline-block">
+  <!-- STUDENT CARDS -->
+  <div
+    class="card m-3"
+    (click)="student.isSelected = !student.isSelected"
+    [ngClass]="{'card-selected': student.isSelected}"
+    *ngIf="!student.isEnrolled"
+  >
 
-    <!-- NAME -->
-    <div class="card-title">
-      {{ buildNameLine(student) }}
-    </div>
+    <div class="card-body">
+      <!--PIC-->
+      <img [src]="student.picture.medium" alt="Student Picture" class="w-25 float-end d-inline-block">
 
-    <!--ADDRESS-->
-    <div class="card-text">
-      {{ buildAddressLine(student) }}
+      <!-- NAME -->
+      <div class="card-title">
+        {{ buildNameLine(student) }}
+      </div>
+
+      <!--ADDRESS-->
+      <div class="card-text">
+        {{ buildAddressLine(student) }}
+      </div>
+
     </div>
 
   </div>
-
-</div>
+</ng-container>
