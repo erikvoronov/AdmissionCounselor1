@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {JsonPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {StudentService} from "../services/student.service";
+import {SortPipe} from "../sort.pipe";
 
 @Component({
   selector: 'student-chooser',
@@ -9,7 +10,8 @@ import {StudentService} from "../services/student.service";
     NgForOf,
     JsonPipe,
     NgClass,
-    NgIf
+    NgIf,
+    SortPipe
   ],
   templateUrl: './student-chooser.component.html',
   styleUrl: './student-chooser.component.less'
@@ -19,13 +21,17 @@ export class StudentChooserComponent {
   students;
 
   constructor(
-    private studentService: StudentService) {
+    private studentService: StudentService)
+  {
     this.subscribeToStudents();
   }
 
   private subscribeToStudents(): void {
     this.studentService.data
-      .subscribe(students => this.students = students.results);
+      .subscribe(students => {
+        this.students = students;
+        this.students.forEach(s => s.sortName = s.name.last);
+      });
   }
 
   buildNameLine(student): string {

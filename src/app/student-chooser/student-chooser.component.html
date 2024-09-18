@@ -1,10 +1,10 @@
-<pre>{{ students | json }}</pre>
+<!--<pre>{{ students | json }}</pre>-->
 
-<ng-container *ngFor="let student of students">
+<ng-container *ngFor="let student of students | sort: 'sortName'">
 
   <!-- STUDENT CARDS -->
   <div
-    class="card m-3"
+    class="card m-3 d-inline-block"
     (click)="student.isSelected = !student.isSelected"
     [ngClass]="{'card-selected': student.isSelected}"
     *ngIf="!student.isEnrolled"

@@ -29,8 +29,8 @@ export class StudentService {
     const url = `${this.BASE}?seed=${this.SEED}&results=${this.RESULT_COUNT}`;
 
     this.http.get(url)
-      .subscribe(result =>
-      {this.dataSource.next(result);
+      .subscribe((result: any) =>
+      {this.dataSource.next(result.results);
       console.log('student.service.ts', 'result', result);
     });
   }

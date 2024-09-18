@@ -1,6 +1,6 @@
-<pre>{{ schools | json }}</pre>
+<!--<pre>{{ schools | json }}</pre>-->
 
-<div *ngFor="let school of schools"
+<div *ngFor="let school of schools | sort: 'name'"
      class="card m-3 d-inline-block"
      (click)="selectSchool(school)"
      [ngClass]="{'card-selected':school.isSelected}"
