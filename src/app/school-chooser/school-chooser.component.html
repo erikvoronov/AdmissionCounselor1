@@ -1,0 +1,21 @@
+<pre>{{ schools | json }}</pre>
+
+<div *ngFor="let school of schools"
+     class="card m-3 d-inline-block"
+     (click)="selectSchool(school)"
+     [ngClass]="{'card-selected':school.isSelected}"
+>
+
+  <div class="card-body">
+
+    <div class="card-title">
+      {{ buildSchoolName(school) }}
+    </div>
+
+    <a class="btn btn-primary" [href]="school.web_pages[0]" target="_blank">
+      <i class="fas fa-globe"></i>
+      {{ buildSchoolLinkDisplay(school) }}
+    </a>
+
+  </div>
+</div>

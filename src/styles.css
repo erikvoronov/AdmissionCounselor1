@@ -1,0 +1,10 @@
+pre{
+  text-align: left;
+  user-select: all;
+  width: 250px;
+  height: 250px;
+  overflow: auto;
+  background: #EEE;
+  padding: 7px 10px;
+  border: 2px solid black;
+}

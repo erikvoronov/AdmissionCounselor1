@@ -1,0 +1,25 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col"></div>
+
+    <div class="col">
+      <div class="btn btn-success">
+        {{ buildEnrollButtonDisplay(studentChooser) }}
+
+        TEST
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <!-- SCHOOL CARDS -->
+      <school-chooser></school-chooser>
+    </div>
+
+    <!-- STUDENT CARDS -->
+    <div class="col">
+      <student-chooser #studentChooser></student-chooser>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.col {
+  border: 1px solid gray;
+}
+
+.card {
+  user-select: none;
+  width: 325px;
+  cursor: default;
+  background: #EFEFEF;
+
+  &.card-selected {
+    border: 3px solid black;
+  }
+}
+
+.enroll-btn{
+  width: 165px;
+}
