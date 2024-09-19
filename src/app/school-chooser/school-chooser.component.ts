@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {UniversityService} from "../services/university.service";
-import {JsonPipe, NgClass, NgForOf} from "@angular/common";
+import {JsonPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {SortPipe} from "../sort.pipe";
+import {NgbPopover} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'school-chooser',
@@ -10,7 +11,9 @@ import {SortPipe} from "../sort.pipe";
     JsonPipe,
     NgForOf,
     NgClass,
-    SortPipe
+    SortPipe,
+    NgIf,
+    NgbPopover
   ],
   templateUrl: './school-chooser.component.html',
   styleUrl: './school-chooser.component.less'
@@ -24,11 +27,11 @@ export class SchoolChooserComponent {
     this.subscribeToSchools();
   }
 
-  private addEnrolledStudents(selectedStudents: any[]): void{
+  private addEnrolledStudents(selectedStudents: any[]): void {
     const schoolName = this.getSelectedSchool().name;
     let schoolStudents = this.schoolStudentMap[schoolName];
 
-    if(!schoolStudents){
+    if (!schoolStudents) {
       this.schoolStudentMap[schoolName] = schoolStudents = [];
     }
 
@@ -63,6 +66,15 @@ export class SchoolChooserComponent {
     school.isSelected = true;
   }
 
+  getStudentCount(school: any): number {
+    const students = this.getEnrolledStudents(school);
+    return students?.length;
+  }
+
+  getEnrolledStudents(school: any): any[]{
+    return this.schoolStudentMap[school.name];
+  }
+
   getSelectedSchool(): any {
     return this.schools.find(s => s.isSelected);
   }
@@ -74,7 +86,12 @@ export class SchoolChooserComponent {
 
   enroll(students: any[]) {
     this.addEnrolledStudents(students);
+    this.deselect();
   }
 
-
+  undoEnroll(school: any): void {
+    let students = this.getEnrolledStudents(school);
+    students.forEach(s => s.isEnrolled = false);
+    students.length = 0;
+  }
 }

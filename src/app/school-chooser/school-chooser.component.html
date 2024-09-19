@@ -1,5 +1,5 @@
 <!--<pre>{{ schools | json }}</pre>-->
-<pre>{{ schoolStudentMap | json }}</pre>
+<!--<pre>{{ schoolStudentMap | json }}</pre>-->
 
 <div *ngFor="let school of schools | sort: 'name'"
      class="card m-3 d-inline-block"
@@ -17,6 +17,22 @@
       <i class="fas fa-globe"></i>
       {{ buildSchoolLinkDisplay(school) }}
     </a>
+
+    <div *ngIf="getStudentCount(school)"
+         class="btn btn-danger m-lg-2"
+         (click)="undoEnroll(school); $event.stopPropagation()"
+         [ngbPopover]="enrolledView" placement="left" triggers="mouseenter:mouseleave"
+         popoverClass="shadow">
+      <i class="fas fa-sign-out-alt"></i>
+      {{ getStudentCount(school) }}
+
+
+      <ng-template #enrolledView>
+        <div *ngFor="let student of getEnrolledStudents(school) | sort: 'sortName'">
+          {{student.name.first + ' ' + student.name.last}}
+        </div>
+      </ng-template>
+    </div>
 
   </div>
 </div>

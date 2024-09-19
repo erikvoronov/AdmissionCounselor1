@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {SchoolChooserComponent} from "./school-chooser/school-chooser.component";
@@ -14,24 +14,27 @@ import {StudentChooserComponent} from "./student-chooser/student-chooser.compone
 export class AppComponent {
   title = 'AdmissionsCounselor';
 
-  buildEnrollButtonDisplay(studentChooser: StudentChooserComponent): string {
-    const count = studentChooser.getSelectedCount();
+  @ViewChild(StudentChooserComponent, {static: true}) studentChooser: StudentChooserComponent;
+  @ViewChild(SchoolChooserComponent, {static: true}) schoolChooser: SchoolChooserComponent;
+
+  buildEnrollButtonDisplay(): string {
+    const count = this.studentChooser.getSelectedCount();
     const plural = this.plural('Student', count);
 
     return `Enroll ${count} ${plural}`;
   }
 
-  hasValidSelection(studentChooser: StudentChooserComponent, schoolChooser: SchoolChooserComponent): boolean {
-    const hasStudents = studentChooser.getSelectedCount();
-    const hasSchool = schoolChooser.getSelectedSchool();
+  hasValidSelection(): boolean {
+    const hasStudents = this.studentChooser.getSelectedCount();
+    const hasSchool = this.schoolChooser.getSelectedSchool();
 
     return hasSchool && hasStudents;
   }
 
-  enroll(studentChooser: StudentChooserComponent, schoolChooser: SchoolChooserComponent): void {
-    const selectedStudents = studentChooser.getSelected();
-    schoolChooser.enroll(selectedStudents);
-    studentChooser.enroll();
+  enroll(): void {
+    const selectedStudents = this.studentChooser.getSelected();
+    this.schoolChooser.enroll(selectedStudents);
+    this.studentChooser.enroll();
   }
 
   private plural(word: string, count: number): string {
