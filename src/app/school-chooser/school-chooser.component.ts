@@ -18,9 +18,21 @@ import {SortPipe} from "../sort.pipe";
 export class SchoolChooserComponent {
 
   schools;
+  schoolStudentMap = {};
 
   constructor(private schoolService: UniversityService) {
     this.subscribeToSchools();
+  }
+
+  private addEnrolledStudents(selectedStudents: any[]): void{
+    const schoolName = this.getSelectedSchool().name;
+    let schoolStudents = this.schoolStudentMap[schoolName];
+
+    if(!schoolStudents){
+      this.schoolStudentMap[schoolName] = schoolStudents = [];
+    }
+
+    schoolStudents.push(...selectedStudents);
   }
 
   private subscribeToSchools(): void {
@@ -51,7 +63,7 @@ export class SchoolChooserComponent {
     school.isSelected = true;
   }
 
-  getSelectedSchool(): any{
+  getSelectedSchool(): any {
     return this.schools.find(s => s.isSelected);
   }
 
@@ -59,4 +71,10 @@ export class SchoolChooserComponent {
     const selectedSchool = this.schools.find(s => s.isSelected);
     selectedSchool && (selectedSchool.isSelected = false);
   }
+
+  enroll(students: any[]) {
+    this.addEnrolledStudents(students);
+  }
+
+
 }

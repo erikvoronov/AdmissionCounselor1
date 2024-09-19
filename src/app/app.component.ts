@@ -14,8 +14,6 @@ import {StudentChooserComponent} from "./student-chooser/student-chooser.compone
 export class AppComponent {
   title = 'AdmissionsCounselor';
 
-  schoolStudentMap = {};
-
   buildEnrollButtonDisplay(studentChooser: StudentChooserComponent): string {
     const count = studentChooser.getSelectedCount();
     const plural = this.plural('Student', count);
@@ -31,21 +29,9 @@ export class AppComponent {
   }
 
   enroll(studentChooser: StudentChooserComponent, schoolChooser: SchoolChooserComponent): void {
-    this.addEnrolledStudents(schoolChooser, studentChooser);
-    studentChooser.enroll();
-    schoolChooser.deselect();
-  }
-
-  addEnrolledStudents(schoolChooser: SchoolChooserComponent, studentChooser: StudentChooserComponent): void {
-    const schoolName = schoolChooser.getSelectedSchool().name;
-    let schoolStudents = this.schoolStudentMap[schoolName];
-
-    if(!schoolStudents){
-      this.schoolStudentMap[schoolName] = schoolStudents = [];
-    }
-
     const selectedStudents = studentChooser.getSelected();
-    schoolStudents.push(...selectedStudents);
+    schoolChooser.enroll(selectedStudents);
+    studentChooser.enroll();
   }
 
   private plural(word: string, count: number): string {
