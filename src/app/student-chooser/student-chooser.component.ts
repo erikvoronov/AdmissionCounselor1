@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {JsonPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {StudentService} from "../services/student.service";
 import {SortPipe} from "../sort.pipe";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'student-chooser',
@@ -11,7 +12,8 @@ import {SortPipe} from "../sort.pipe";
     JsonPipe,
     NgClass,
     NgIf,
-    SortPipe
+    SortPipe,
+    RouterLink
   ],
   templateUrl: './student-chooser.component.html',
   styleUrl: './student-chooser.component.less'

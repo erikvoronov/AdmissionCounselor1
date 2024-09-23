@@ -3,6 +3,7 @@ import {UniversityService} from "../services/university.service";
 import {JsonPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {SortPipe} from "../sort.pipe";
 import {NgbPopover} from "@ng-bootstrap/ng-bootstrap";
+import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'school-chooser',
@@ -23,8 +24,12 @@ export class SchoolChooserComponent {
   schools;
   schoolStudentMap = {};
 
-  constructor(private schoolService: UniversityService) {
+  constructor(
+    private schoolService: UniversityService,
+    private appComponent: AppComponent
+    ) {
     this.subscribeToSchools();
+    this.schoolStudentMap = this.appComponent.appState;
   }
 
   private addEnrolledStudents(selectedStudents: any[]): void {

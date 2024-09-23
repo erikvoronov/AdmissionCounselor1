@@ -13,7 +13,8 @@
       {{ buildSchoolName(school) }}
     </div>
 
-    <a class="btn btn-primary" [href]="school.web_pages[0]" target="_blank">
+    <a class="btn btn-primary" [href]="school.web_pages[0]" target="_blank"
+    (click)="$event.stopPropagation()">
       <i class="fas fa-globe"></i>
       {{ buildSchoolLinkDisplay(school) }}
     </a>

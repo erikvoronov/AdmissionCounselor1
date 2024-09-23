@@ -11,6 +11,13 @@
   >
 
     <div class="card-body">
+
+      <!-- Student View Button -->
+      <div class="btn btn-info btn-student-info" (click)="$event.stopPropagation()"
+           routerLink="/student/{{student.login.uuid}}">
+        <i class="fas fa-user"></i>
+      </div>
+
       <!--PIC-->
       <img [src]="student.picture.medium" alt="Student Picture" class="w-25 float-end d-inline-block">
 
